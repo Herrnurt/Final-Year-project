@@ -1,0 +1,160 @@
+APPENDIX A
+Codes used for Numerical Approximations
+Adams-Bashforth-Moulton Method
+%Adams-Bashforth-Moulton predictor and corrector of order 1 to 13.
+%solution to the production of Gluconic Acid from Glucose
+% this program calculates Concentration of the Components of the y1, y2, y3, y4.
+% it calls the function Linear Ode to solve the set of Linear Ordinary Equations.
+% WRITTEN BY OLADIPO BOLAJI ON 07/05/2017
+
+function dydt = solver2Ode113(t,y)
+% Solve the kinetics example
+dydt = zeros(size(y));
+% Parameters - reaction-rate constants
+b1 = 0.949; b2 = 3.439; b3 = 18.72; b4 = 37.51; b5 = 1.169;
+A = y(1); 
+B = y(2); 
+C = y(3);
+D = y(4); 
+% Evaluate the RHS expression
+dydt(1) = b1*A -((b1*A^2)/b2); 
+dydt(2) = ((b3*A*D)/( b4+D))- (0.9082*b5*B);
+dydt(3) = b5*B;
+dydt(4) = -1.011*((b3*A*D)/( b4+D));
+end
+% for the result use the following codes
+% type this in the command window
+%[t,y]= ode113('solver2Ode113',[0:0.5:9],[0.5 0 0 50])
+
+Runge-Kutta
+%This is ODE45 program Codes Runge-Kutta Method
+%solution to the production of Gluconic Acid from Glucose
+% This program calculates and plots Concentration of the Components of the
+% system y1, y2, y3,y4.
+% it calls the function Linear Ode to solve the set of Linear Ordinary Equation.
+% WRITTEN BY OLADIPO BOLAJI ON 07/05/2017
+ 
+function dydt = solver1Ode45(t,y)
+% Solve the kinetics example
+dydt = zeros(size(y));
+% Parameters - reaction-rate constants
+b1 = 0.949; b2 = 3.439; b3 = 18.72; b4 = 37.51; b5 = 1.169;
+A = y(1); 
+B = y(2); 
+C = y(3);
+D = y(4);
+% Evaluate the RHS expression
+dydt(1) = b1*A -((b1*A^2)/b2); 
+dydt(2) = ((b3*A*D)/( b4+D))- (0.9082*b5*B);
+dydt(3) = b5*B;
+dydt(4) = -1.011*((b3*A*D)/( b4+D));
+end
+% for the result use the following codes
+% type this in the command window
+% type this in the command window
+% [t,y]= ode45('solver1Ode45',[0:0.5:9],[0.5 0 0 50])
+
+Gear’s method
+% Gear’s method
+%solution to the production of Gluconic Acid from Glucose
+% this program calculates and plots Concentration of the Components of the
+% system y1, y2, y3, y4 vs Time.
+% it calls the function Linear Ode to solve the set of Linear Ordinary Equation.
+% WRITTEN BY OLADIPO BOLAJI ON 07/05/2017
+
+function dydt = solver2Ode15s(t,y)
+% Solve the kinetics example
+dydt = zeros(size(y)); 
+% Parameters - reaction-rate constants
+b1 = 0.949; b2 = 3.439; b3 = 18.72; b4 = 37.51; b5 = 1.169;
+A = y(1); 
+B = y(2); 
+C = y(3);
+D = y(4);
+% Evaluate the RHS expression
+dydt(1) = b1*A -((b1*A^2)/b2); 
+dydt(2) = ((b3*A*D)/( b4+D))- (0.9082*b5*B);
+dydt(3) = b5*B;
+dydt(4) = -1.011*((b3*A*D)/( b4+D));
+end 
+% for the result use the following codes
+%write the codes in the command window
+% [t,y]= ode15s('solver2Ode15s',[0:0.5:9],[0.5 0 0 50])
+
+Bogacki-shampine method 
+% Bogacki-shampine method
+%solution to the production of Gluconic Acid from Glucose
+% This program calculates and plots Concentration of the Components of the
+% system y1, y2, y3,y4 vs Time.
+% it calls the function Linear Ode to solve the set of Linear Ordinary Equation.
+% WRITTEN BY OLADIPO BOLAJI ON 07/05/2017
+
+function dydt = solver2Ode23(t,y)
+% Solve the kinetics example
+dydt = zeros(size(y));
+% Parameters - reaction-rate constants
+b1 = 0.949; b2 = 3.439; b3 = 18.72; b4 = 37.51; b5 = 1.169;
+A = y(1); 
+B = y(2); 
+C = y(3);
+D = y(4);
+ 
+% Evaluate the RHS expression
+dydt(1) = b1*A -((b1*A^2)/b2); 
+dydt(2) = ((b3*A*D)/( b4+D))- (0.9082*b5*B);
+dydt(3) = b5*B;
+dydt(4) = -1.011*((b3*A*D)/( b4+D));
+end
+% for the result use the following codes
+% type this in the command window
+% [t,y]= ode23('solver2Ode23',[0:0.5:9],[0.5 0 0 50])
+
+
+Euler
+% Euler approximation for ODE initial value problem
+% Euler forward method
+% File prepared by Oladipo Bolaji John. 25/05/2017
+% Calculation of h from xinit, xfinal, and n
+% WRITTEN BY OlADIPO BOLAJI ON 25/07/2017
+
+ function dydx = EALL(x,yint,uinit,vinit,winpt)
+    b1 = 0.949;
+    b2 = 3.439;
+    b3 = 18.72; 
+    b4 = 37.51; 
+    b5 = 1.169;
+    xmax=9;
+    xinit= 0;  yinit = 0.5;      %y(xinit)=y {y(0)=0}
+    xinit=0;  uinit = 0.0;      %y(xinit)=u {u(0)=0}
+    xinit=0;  vinit = 0.0;      %v(xinit)=v {v(0)=0}
+    xinit=0;  winit = 50;      %w(xinit)=w {w(0)=0}
+    x = xinit:0.5:xmax
+    h=x(2)-x(1);
+    m=length(x);
+% for y values
+    y=zeros(1,m);
+    y(1)=yinit;
+    f=@(x,y,u,v,w) (y*b1) -((b1*(y^2))/b2); 
+% for u values
+    u=zeros(1,m);
+    u(1)=uinit;
+    g=@(x,y,u,v,w) (((b3*yinit*winit)/( b4+winit))- (0.9082*b5*u(1)));   
+% for v values
+    v=zeros(1,m);
+    v(1)=vinit;
+    k=@(x,u) (b5*u(1));
+% for w values
+    w=zeros(1,m);
+    w(1)=winit;
+    l=@(x,y,u,v,w) -1.011*((yinit*b3*winit)/( b4+winit));
+for n=1:m-1
+    y(n+1)= y(n)+h*f(x(n),y(n))
+    u(n+1)= u(n)+h*g(x(n),u(n),y(n),w(n))
+    v(n+1)= v(n)+h*k(x(n),u(n))
+    w(n+1)= w(n)+h*l(x(n),y(n),w(n))  
+end;   
+display(y)
+ 	%type run EALL on the command window to run the codes
+% or click on run on the editor tab
+ 
+
