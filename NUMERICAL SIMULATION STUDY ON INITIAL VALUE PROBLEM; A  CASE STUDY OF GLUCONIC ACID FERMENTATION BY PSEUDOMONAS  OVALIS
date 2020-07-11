@@ -1,0 +1,118 @@
+This chapter describes the use of Mathematical Laboratory software to carry out the application of Numerical Solution for the production of Gluconic acid by fermentation of glucose.
+3.1	MATERIALS
+The materials used for the research work are as follow:
+Mathematical Modelling and Optimization of the Gluconic acid Fermentation: (Constantinides, A., and Mostoufi, N.,  Numerical methods for Chemical Engineers with MatLab Applications, Prentice Hall PTR, upper Saddle River, New Jersey 07458. Page 379.)
+3.1.2	DESCRIPTION
+The conversion of glucose to Gluconic acid is a simple oxidation of the aldehyde group of the sugar to a carboxyl group. This transformation can be achieved by a microorganism in a fermentation process. The enzyme glucose oxidase present in the microorganism, converts glucose to gluconolacrone. In turn, the gluconolacrone hydrolyzes to form the Gluconic acid. The overall mechanism of the fermentation process that performs this transformation can be described as follows:
+Cell growth: 
+             Glucose + Cells  ( Cells
+Glucose oxidation:
+              Glucose + 02   (  Gluconolactone + H202 (G1ucoseasOxidase as Enzyme)
+Gluconolactone hydrolysis:
+               Gluconolactone + H2O ( Gluconic acid
+Peroxide decomposition:
+              H2O2  (  H20 + ½ O2 (in the presence of a Catalyst)
+Rate of Cell Growth
+	                  =  (1 -  )
+Rate of Gluconolactone Formation
+	 
+Rate of Gluconic acid formation
+
+Rate of Glucose Consumption 
+
+
+3.1.3	REQUIRED
+A mathematical model of the fermentation of the bacterium Pseudomonas ovalis, which produces Gluconic acid, has been developed by Rai and Constantinides. This model, which describes the dynamics of the logarithmic growth phases, can be summarized as follows:
+Where y1 =concentration of cell
+            y2 = concentration of Gluconolactone
+            y3 = concentration of Gluconic acid
+            y4 = concentration of glucose
+b1 – b5 =parameters of the system which are functions of temperature and pH. At the operating conditions of 30°C and pH 6.6,the values of the five parameters were determined
+from experimental data to be
+b1 = 0.949,  b2= 3.439, b3 = 18.72,  b4= 37.51,  b5 = 1.169
+At these conditions, develop the time profiles of all variables, y1 to y4 for the period
+0 ≥ t ≥ 9 h. The initial conditions at the start of this period are
+Y1 (0) = 0.5 U.O.D/ml			Y2(0) = 0.0 mg/l
+Y3(0) = 0.0 mg/l				Y4(0) = 50.0mg/l
+
+
+
+3.3	METHOD
+MATLAB (matrix laboratory) is a multi-paradigm numerical computing environment and fourth-generation programming language. MATLAB is a powerful code-based mathematical and engineering calculation program.
+Version 2015a of MatLab was used to generate the Numerical Solutions for the problem.
+3.4	PROCEDURE
+3.4.1 	Description
+The program (s) calculate(s) and plot(s) Concentration of the Components of the system y1, y2, y3, y4 vs Time.
+It calls the function Linear Ode to solve the set of Linear Ordinary.
+The work is divided into Four Parts:
+Generation of the Codes in the Editor
+Debugging
+Calling for the function in the Command window 
+Extracting the values of the Numerical Approximations
+Plotting the Graph for the output
+
+Generation of the Codes in the Editor
+Codes in MatLab are written in two forms, either using Editor to generate M-files or type the codes directly in the command window.
+
+The following were done to generate the codes for the problem using the M-file Method:
+ODE45
+Type the function to represent the Solver to perform the Numerical approximation for the problem. e.g function dydt = solver1Ode45(t,y). 
+The name of the other solver will change such as solver1Ode15s, solverOde23 and so on.
+ The left-hand side represents the Output while the right-hand side represents the input.
+Name the M-file with the name of the Function such as solver1Ode45.m.
+Enter the Parameters that is Reaction rate Constants such as:
+b1 = 0.949; b2 = 3.439; b3 = 18.72; b4 = 37.51; b5 = 1.169;
+A = y(1); 
+B = y(2); 
+C = y(3); 
+D = y(4);
+Express the Rates equations in form of Mathematical Differential Equations.
+dydt(1) = b1*A -((b1*A^2)/b2); 
+dydt(2) = ((b3*A*D)/( b4+D))- (0.982*b5*B);
+dydt(3) = b5*B;
+dydt(4) = -1.011*((b3*A*D)/( b4+D)); 
+The left-hand side represents the rates equations and the right-hand side represents the formula for obtaining the Numerical Solutions for the problem.
+Enter END to stop the Program.
+The same procedures were followed for the other types of Solvers such as ODE15, ODE23s and so on.
+
+ 
+
+Figure 3.1 	The Editor window for writing codes in form of M-file
+
+
+
+Debugging
+Debugging helps to change the value of a variable in the current workspace to see if the new value produces expected results. While the program is paused, assign a new value to the variable in the Command Window, Workspace browser, or Variables Editor and then continue running or stepping through the program. If the new value does not produce the expected results, the program has a different problem.
+The following were done while preparing for debugging:
+Open the file — to use the Editor for debugging, it was open it with the file to run.
+Save changes — after editing the file, the changes was saved before debugging.
+The files were added to a folder on the search path or put them in the current folder.
+
+Calling for the function in the Command window
+To generate output on MatLab, there are two ways. Either to use the Run tab in the Editor window or to call for the function by typing it in the command window.
+The method used was to call for the function by typing it on the command window.
+for the result use the following codes, [t,y]= ode45('solver1Ode45',[0:0.5:9],[0.5 0 0 50]) and it will follow for other solvers such as 
+[t,y]= ode113('solver1Ode113',[0:0.5:9],[0.5 0 0 50]), 
+[t,y]= ode15s('solver2Ode15s',[0:0.5:9],[0.5 0 0 50]) and so on.
+Wait for the program to run to display the results.
+
+Figure 3.2 	The Command window to call for the function to run the M-files
+
+Extracting the values of the Numerical Approximations
+The values for Numerical Approximations can extracted by double clicking on the desired variable on the workplace. A pop-out menu will come out in form of Excel template and the values can be extracted.
+
+
+Figure 3.3 	The Command window showing the Numerical Approximations
+
+
+Figure 3.4 	The Workspace window showing the values in form of Excel Template
+
+Plotting the Graph for the output
+The output in from of a graph can be obtain by typing the codes for plotting graph on the Command window. A pop-out window in a new tab comes out with the graph.
+ 
+
+Figure 3.5 The Editor window showing codes for plotting Graph.
+
+
+
+Figure 3.6 	The Graphical window showing the outputs in form of plotted Graph
